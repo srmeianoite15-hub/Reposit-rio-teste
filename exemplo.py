@@ -4,3 +4,7 @@ if opcao == "1":
     for i in range(quantidade_livros):
         print("LIVRO")
         codigo = input("codigo: ")
+        print
+
+        #exemplo
+
