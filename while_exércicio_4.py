@@ -34,7 +34,7 @@ while True:
             print("Nenhum livro cadastrado até o momento.")
         else:
             for livro in lista_de_livros:
-                print(f"\ncodigo: {livro}", "\nTítulo: {livro}") 
+                print(f" \n|codigo: {livro[0]} \n| Título do Livro: {livro[1]} \n| Nome do Autor: {livro[2]} \n| Ano de laçamento: {livro[3]} \n| copias: {livro[4]}" ) 
         
     elif opcao_escolhida == "3":
         print("Saindo do Sistema... Até logo :)")
