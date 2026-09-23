@@ -14,3 +14,4 @@ print("\n-----SITUAÇÃO DO ESTOQUE-----\n")
 print(f"Produto: {produto}")
 print(f"Quantidade disponivel do produto: {quantidade}")
 print(f"Situação: {situação_do_estoque}")
+
