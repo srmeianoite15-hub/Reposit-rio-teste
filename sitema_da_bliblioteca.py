@@ -11,7 +11,7 @@ while True:
     opcao_escolhida = input("\nSelecione uma das opções: ")
     
     if opcao_escolhida =="1":
-        validação = input("\nDigite o nome do livro ou do autor: ") 
+        #validação_1 = input("\nDigite o nome do livro ou do autor: ") 
         quant_de_livros = int(input("\nDigite a quantidade de livros que deseja cadastrar: "))
             
         for l in range(1, quant_de_livros + 1):
@@ -30,12 +30,17 @@ while True:
                 print("ERROR!! Verifique se você preencheu corretamente os campos! ")
                 
     elif opcao_escolhida == "2":
-        print("\n >>>> LISTA DE LIVROS CADASTRADOS <<<<")
+        
+        for lista in range(1, quant_de_livros +1):
+            
+            print(f"\n >>>> LISTA DE LIVROS CADASTRADOS <<<<")
+            print(f"\n >>> LIVRO {lista} >>>")
         
         if not lista_de_livros:
             print("Nenhum livro cadastrado até o momento.")
         else:
             for livro in lista_de_livros:
+                
                 print(f" \n| Codigo: {livro[0]} " )
                 print(f" \n| Título do Livro: {livro[1]} ")
                 print(f" \n| Nome do Autor: {livro[2]} ")

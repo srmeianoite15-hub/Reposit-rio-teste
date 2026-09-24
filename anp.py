@@ -14,19 +14,41 @@ while True:
     opcao = input("Digite uma opção: ")
 
     if opcao == "1":
+        quantidade_de_livros = int(input("\nDigite a quantidade de livros que deseja cadastrar: "))
+        for l in range(1, quantidade_de_livros + 1):
+            
+            print(f"\n>>>> LIVRO {l} >>>>")
+            titulo = input("Digite o título: ")
+            autor = input("Digite o autor: ")
 
-        titulo = input("Digite o título: ")
-        autor = input("Digite o autor: ")
+            livros.append([titulo, autor]) 
 
-        livros.append([titulo, autor])
-
-        print("Livro cadastrado!")
+            print("Livro cadastrado!")
+            
+            #print
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 
     elif opcao == "2":
-
-        print("\n--- LIVROS CADASTRADOS ---")
+        
+        for lista in range(1, quantidade_de_livros + 1):
+            print(f"\n--- LIVROS CADASTRADOS ---" )
 
         for contador in livros:
+            print(f"\n >>> LIVRO {l} >>>")
             print("Título:", contador[0])
             print("Autor:", contador[1])
 
@@ -44,7 +66,7 @@ while True:
                 encontrado = True
                 break
 
-        if not encontrado:
+        #if not encontrado:
             print("Não foi encontrado nenhum livro correspondente!")
         #Comando if not para informar caso a pesquisa falhe    
 
