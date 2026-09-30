@@ -34,7 +34,7 @@ def listar_ilvro():
          print(f" \n Autor: {livro[1]}")
          print(f" \n Preço: {livro[2]}:2.f")
          print(f" \n Quantidade: {livro[3]}")
-         print(f" \n Quantidade total em estoque: {livro[4]}:2.f")
+         print(f" \n Quantidade total em estoque: {livro[4]:.2f}:")
         
 def buscar_livro():
      print("\n >>> BUSCA DE LIVRO <<<")
@@ -45,13 +45,62 @@ def buscar_livro():
          if pesquisa in livro[0].lower():
              print("[ENCONTRADO]")
              print(f"\n Título: {livro[0]}")
-             print(f"\n Autor: {livro[2]}")
-             print(f"\n Estoque: {livro[3]}")
+             print(f"\n Autor: {livro[1]}")
+             print(f"\n Estoque: {livro[2]}")
              encontrado = True
             
      if not encontrado:
           print(f"Nenhum livro encotrado na bliblioteca!{pesquisa}...")
-         
+          
+from datetime import datetime, date
+          
+def pedir_data(mensagem):
+    while True:
+        texto = input(mensagem).strip()
+        if texto == "":
+            return date.today()
+        try:
+            return datetime. striptime(texto, "%d/%m/%Y").date()
+        except ValueError:
+            print("Data inválida! Use o formato DD/MM/AAAA.")
+          
+def devolver_livro():
+    print("\n>>> AGENDAR DEVOLUÇÃO LIVRO <<<")
+    titulo = input("Título do livro: ").lower()
+    
+    existe = any(livro[0].lower() == titulo for livro in bliblioteca)
+    if not existe:
+        print("Livro não encontrado!")
+        return
+    
+    data = pedir_data("Data de Devolução (DD/MM/AAAA): ")
+    if data < data.today():
+        print("Escolha hoje ou uma data futura!")
+        return
+    
+    devolver_livro.append({"título": titulo, "data": data})
+    print(f"EScolha agendada para {data.strftime('%d/%m/%Y')}.")
+    
+def processar_devolução():
+    hoje = date.today()
+    pendente = []
+    
+    for d in devolver_livro:
+        if d["data"] <= hoje:
+            for livro in bliblioteca:
+                if livro[0].lower() == d["titulo"]:
+                    livro[3] += 1
+                    print(f"[AUTO] '{livro[0]}' devolvido ao estoque!")
+                    break
+        else:
+            pendente.append(d)
+            
+    devolver_livro[:] = pendente
+        
+                
+    
+        
+    
 def remover_livro():
      print("\n >>> REMOVER LIVRO <<<")
      pesquisa_de_remocao = input("Informe o título do livro que você deseja remover: ")
@@ -73,8 +122,9 @@ def menu():
          print("\n1- Cadasatrar Livros")
          print("2 - Listar Livros")
          print("3 - buscar livro")
-         print("4 - Remover livro")
-         print("5 - Sair")
+         print("4 - Devolver livro")
+         print("5 - Remover livro")
+         print("6 - sair")
         
         
          opcao = input("Escolha uma opção: ")
@@ -86,8 +136,10 @@ def menu():
          elif opcao == "3":
              buscar_livro()
          elif opcao == "4":
-             remover_livro()
+             devolver_livro()
          elif opcao == "5":
+             remover_livro()
+         elif opcao == "6":
              print("\n Saindo do programa.... :)")
              break
          else:
