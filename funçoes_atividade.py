@@ -60,9 +60,11 @@ def pedir_data(mensagem):
         if texto == "":
             return date.today()
         try:
-            return datetime. striptime(texto, "%d/%m/%Y").date()
+            return datetime. strptime(texto, "%d/%m/%Y").date()
         except ValueError:
             print("Data inválida! Use o formato DD/MM/AAAA.")
+
+devolucoes_agendada = []
           
 def devolver_livro():
     print("\n>>> AGENDAR DEVOLUÇÃO LIVRO <<<")
@@ -74,28 +76,28 @@ def devolver_livro():
         return
     
     data = pedir_data("Data de Devolução (DD/MM/AAAA): ")
-    if data < data.today():
+    if data < date.today():
         print("Escolha hoje ou uma data futura!")
         return
     
-    devolver_livro.append({"título": titulo, "data": data})
-    print(f"EScolha agendada para {data.strftime('%d/%m/%Y')}.")
+    devolucoes_agendada.append({"título": titulo, "data": data})
+    print(f"\nDevolução agendada para {data.strftime('%d/%m/%Y')}.")
     
-def processar_devolução():
+def processar_devoluçao():
     hoje = date.today()
     pendente = []
     
-    for d in devolver_livro:
+    for d in devolucoes_agendada:
         if d["data"] <= hoje:
             for livro in bliblioteca:
-                if livro[0].lower() == d["titulo"]:
+                if livro[0].lower() == d["título"]:
                     livro[3] += 1
                     print(f"[AUTO] '{livro[0]}' devolvido ao estoque!")
                     break
         else:
             pendente.append(d)
             
-    devolver_livro[:] = pendente
+    devolucoes_agendada[:] = pendente
         
                 
     
@@ -118,6 +120,7 @@ def remover_livro():
         
 def menu():
      while True:
+         processar_devoluçao()
          print("=>=>=> MENU PRINCIPAL <=<=<=")
          print("\n1- Cadasatrar Livros")
          print("2 - Listar Livros")
